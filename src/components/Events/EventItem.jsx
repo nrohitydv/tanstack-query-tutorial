@@ -1,13 +1,17 @@
-import { Link } from 'react-router-dom';
-
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 export default function EventItem({ event }) {
-  const formattedDate = new Date(event.date).toLocaleDateString('en-US', {
-    day: 'numeric',
-    month: 'short',
-    year: 'numeric',
+  const formattedDate = new Date(event.date).toLocaleDateString("en-US", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
   });
   return (
-    <article className="event-item">
+    <motion.article
+      whileHover={{ scale: 1.05 }}
+      transition={{ type: "spring" }}
+      className="event-item"
+    >
       <img src={`http://localhost:3000/${event.image}`} alt={event.title} />
       <div className="event-item-content">
         <div>
@@ -21,6 +25,6 @@ export default function EventItem({ event }) {
           </Link>
         </p>
       </div>
-    </article>
+    </motion.article>
   );
 }
