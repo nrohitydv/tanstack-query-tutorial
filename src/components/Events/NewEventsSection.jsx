@@ -6,8 +6,8 @@ import { fetchEvents } from "../../util/http.js";
 
 export default function NewEventsSection() {
   const { data, isPending, isError, error } = useQuery({
-    queryKey: ["events"],
-    queryFn: fetchEvents,
+    queryKey: ["events", { max: 3 }],
+    queryFn: ({ signal, queryKey }) => fetchEvents({ signal, ...queryKey[1] }),
     //stale time is for to not to send behind the scene request to get updated data if it found default data in cached
     staleTime: 5000,
     //gc time is for how long to cached data
